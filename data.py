@@ -35,8 +35,89 @@ with( open ("Data/message/Actions.txt", "r", encoding="utf-8") as file_action,
 
 
 
+'''
+conn = sqlite3.connect('game_obj.db')  # создаст файл, если его нет
+cursor = conn.cursor()
+
+cursor.execute(''
+CREATE TABLE IF NOT EXISTS items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    description TEXT,
+    attack_power INTEGER,
+    accuracy INTEGER,
+    required_strength INTEGER,
+    required_dexterity INTEGER
+)
+'')
+cursor.execute(''
+CREATE TABLE IF NOT EXISTS monsters (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    description TEXT,
+    attack_power INTEGER,
+    accuracy INTEGER,
+    xp INTEGER
+)
+'')
+conn.commit()
 
 
+
+#Text Files
+with(
+    open(r'.\Data\message\Inscriptions.txt', 'r', encoding='utf-8') as inscription_file,
+    open(r'.\Data\message\Trader.txt', 'r', encoding='utf-8') as trader_file,
+    open(r'.\Data\message\History.txt', 'r', encoding='utf-8') as history_file,
+    open(r'.\Data\message\MainMenu.txt', 'r', encoding='utf-8') as mainmenu_file,
+    open(r'.\Data\message\Tips.txt', 'r', encoding='utf-8') as tips_file,
+    open(r'.\Data\message\Actions.txt', 'r', encoding='utf-8') as actions_file
+    ):
+    trader_text = trader_file.readlines()
+    inscription_text = inscription_file.readlines()
+    history_text = history_file.readlines()
+    mainmenu_text = mainmenu_file.readlines()
+    tips_text = tips_file.readlines()
+    actions_text = actions_file.readlines()
+
+
+#JsonFileRead
+def loadLevelFile():
+    with open('test_level_sheet.json', 'r') as load:
+        data = json.load(load)
+        return data
+dataLevel = loadLevelFile()
+
+
+
+
+
+# Предметы
+def get_all_items():
+    cursor.execute('SELECT * FROM items')
+    return cursor.fetchall()
+
+def get_item_by_id(item_id):
+    cursor.execute('SELECT * FROM items WHERE id = ?', (item_id,))
+    return cursor.fetchone()
+
+def get_item_by_name(item_name):
+    cursor.execute('SELECT * FROM items WHERE name = ?', (item_name,))
+    return cursor.fetchone()
+
+
+# Монстры
+def get_all_monsters():
+    cursor.execute('SELECT * FROM monsters')
+    return cursor.fetchall()
+
+def get_monster_by_id(monster_id):
+    cursor.execute('SELECT * FROM monsters WHERE id = ?', (monster_id,))
+    return cursor.fetchone()
+
+def get_monster_by_name(monster_name):
+    cursor.execute('SELECT * FROM monsters WHERE name = ?', (monster_name,))
+    return cursor.fetchone()
 
 
 
@@ -68,3 +149,4 @@ player_json = {
 
 #save_json("player.json", player_json)
 #print(open_json("player.json"))
+'''
