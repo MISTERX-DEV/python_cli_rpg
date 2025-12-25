@@ -21,6 +21,7 @@ def init_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         description TEXT,
+        health INTEGER,
         attack_power INTEGER,
         accuracy INTEGER,
         xp INTEGER
@@ -60,12 +61,12 @@ def get_monster_by_name(monster_name):
 
 
 
-def load_player(file):
+def load_player(file:str):
     with open(file, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data
 
-def create_player(file, data):
+def create_player(file:str, data:dict):
     with open(file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
