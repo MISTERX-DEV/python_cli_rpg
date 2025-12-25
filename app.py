@@ -1,4 +1,5 @@
 import data
+import random
 
 
 
@@ -51,5 +52,40 @@ def view_monstro(monster):
     print(f''' [ {monster["name"]} ] \n [ HP:{monster["health"]} ] \n [ ATK:{monster["attack_power"]} ] \n [ ACR:{monster["accurancy"]} ]''')
 def view_player_characteristics(player):
     print(f'''\nХарактеристики игрока: \nЗдоровье:{player["hp"]} \nшанс:{player["accurancy"]} \nСила:{player["power"]}''')
-view_monstro(monster)
-view_player_characteristics(player)
+
+
+
+
+
+
+
+
+
+
+
+while player["hp"] >= 0:
+    view_monstro(monster)
+    view_player_characteristics(player)
+    action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
+    if action == 1:
+        monster["health"] -= player["power"]
+    elif action == 2:
+        player["hp"] -= monster["attack_power"]
+    else:
+        print("Ты дурачок?")
+        #player["hp"] -= 1000
+    print(action)
+
+else:
+    print("Вы отсосали, идите отсудя >:)")
+
+
+
+
+
+
+
+
+
+
+
