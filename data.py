@@ -18,17 +18,13 @@ def init_db():
     ''')
     conn.commit()
     #conn.close()
-    return conn
-conn = init_db()
-cursor = conn.cursor()
+    return cursor
+cursor = init_db()
 
 # Предметы
 def get_all_items():
     cursor.execute('SELECT * FROM items')
-    try:
-        return cursor.fetchall()
-    except sqlite3.ProgrammingError:
-        print("Нет предметиов")
+    return cursor.fetchall()
 
 def get_item_by_id(item_id):
     cursor.execute('SELECT * FROM items WHERE id = ?', (item_id,))
@@ -51,17 +47,28 @@ def get_monster_by_name(monster_name):
     cursor.execute('SELECT * FROM monsters WHERE name = ?', (monster_name,))
     return cursor.fetchone()
 
-conn.close()
-
-conn.close()
-
-
-with( open ("Data/message/Actions.txt", "r", encoding="utf-8") as file_action,
-      open ("Data/message/History.txt", "r", encoding="utf-8") as file_history):
-    action_TEXT = file_action.read()
 
 
 
+
+
+
+
+# НЕ ТРОГАТЬ!
+'''with(
+    open('Data/message/Inscriptions.txt', 'r', encoding='utf-8') as inscription_file,
+    open('Data/message/Trader.txt', 'r', encoding='utf-8') as trader_file,
+    open('Data/message/History.txt', 'r', encoding='utf-8') as history_file,
+    open('Data/message/MainMenu.txt', 'r', encoding='utf-8') as mainmenu_file,
+    open('Data/message/Tips.txt', 'r', encoding='utf-8') as tips_file,
+    open('Data/message/Actions.txt', 'r', encoding='utf-8') as actions_file
+    ):
+    trader_text = trader_file.readlines()
+    inscription_text = inscription_file.readlines()
+    history_text = history_file.readlines()
+    mainmenu_text = mainmenu_file.readlines()
+    tips_text = tips_file.readlines()
+    actions_text = actions_file.readlines()'''
 
 with( open ("Data/message/Actions.txt", "r", encoding="utf-8") as file_action,
       open ("Data/message/History.txt", "r", encoding="utf-8") as file_history):
@@ -91,20 +98,7 @@ conn.commit()
 
 
 #Text Files
-with(
-    open(r'.\Data\message\Inscriptions.txt', 'r', encoding='utf-8') as inscription_file,
-    open(r'.\Data\message\Trader.txt', 'r', encoding='utf-8') as trader_file,
-    open(r'.\Data\message\History.txt', 'r', encoding='utf-8') as history_file,
-    open(r'.\Data\message\MainMenu.txt', 'r', encoding='utf-8') as mainmenu_file,
-    open(r'.\Data\message\Tips.txt', 'r', encoding='utf-8') as tips_file,
-    open(r'.\Data\message\Actions.txt', 'r', encoding='utf-8') as actions_file
-    ):
-    trader_text = trader_file.readlines()
-    inscription_text = inscription_file.readlines()
-    history_text = history_file.readlines()
-    mainmenu_text = mainmenu_file.readlines()
-    tips_text = tips_file.readlines()
-    actions_text = actions_file.readlines()
+
 
 
 #JsonFileRead
