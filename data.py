@@ -2,22 +2,58 @@ import json
 import sqlite3
 
 
-
-def init_db():
+def init_db(): 
     conn = sqlite3.connect("Data/DataBase.db")
     cursor = conn.cursor()
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS players (
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS items (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT,
-        level INTEGER,
-        health INTEGER
+        name TEXT NOT NULL,
+        description TEXT,
+        attack_power INTEGER,
+        accuracy INTEGER,
+        required_strength INTEGER,
+        required_dexterity INTEGER
     )
-    """)
+    ''')
     conn.commit()
-    conn.close()
+    #conn.close()
+    return conn
+conn = init_db()
+cursor = conn.cursor()
 
+# Предметы
+def get_all_items():
+    cursor.execute('SELECT * FROM items')
+    try:
+        return cursor.fetchall()
+    except sqlite3.ProgrammingError:
+        print("Нет предметиов")
 
+def get_item_by_id(item_id):
+    cursor.execute('SELECT * FROM items WHERE id = ?', (item_id,))
+    return cursor.fetchone()
+
+def get_item_by_name(item_name):
+    cursor.execute('SELECT * FROM items WHERE name = ?', (item_name,))
+    return cursor.fetchone()
+
+# Монстры
+def get_all_monsters():
+    cursor.execute('SELECT * FROM monsters')
+    return cursor.fetchall()
+
+def get_monster_by_id(monster_id):
+    cursor.execute('SELECT * FROM monsters WHERE id = ?', (monster_id,))
+    return cursor.fetchone()
+
+def get_monster_by_name(monster_name):
+    cursor.execute('SELECT * FROM monsters WHERE name = ?', (monster_name,))
+    return cursor.fetchone()
+
+conn.close()
+
+conn.close()
 
 
 with( open ("Data/message/Actions.txt", "r", encoding="utf-8") as file_action,
@@ -39,17 +75,7 @@ with( open ("Data/message/Actions.txt", "r", encoding="utf-8") as file_action,
 conn = sqlite3.connect('game_obj.db')  # создаст файл, если его нет
 cursor = conn.cursor()
 
-cursor.execute(''
-CREATE TABLE IF NOT EXISTS items (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    description TEXT,
-    attack_power INTEGER,
-    accuracy INTEGER,
-    required_strength INTEGER,
-    required_dexterity INTEGER
-)
-'')
+cursor.execute
 cursor.execute(''
 CREATE TABLE IF NOT EXISTS monsters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -92,32 +118,7 @@ dataLevel = loadLevelFile()
 
 
 
-# Предметы
-def get_all_items():
-    cursor.execute('SELECT * FROM items')
-    return cursor.fetchall()
 
-def get_item_by_id(item_id):
-    cursor.execute('SELECT * FROM items WHERE id = ?', (item_id,))
-    return cursor.fetchone()
-
-def get_item_by_name(item_name):
-    cursor.execute('SELECT * FROM items WHERE name = ?', (item_name,))
-    return cursor.fetchone()
-
-
-# Монстры
-def get_all_monsters():
-    cursor.execute('SELECT * FROM monsters')
-    return cursor.fetchall()
-
-def get_monster_by_id(monster_id):
-    cursor.execute('SELECT * FROM monsters WHERE id = ?', (monster_id,))
-    return cursor.fetchone()
-
-def get_monster_by_name(monster_name):
-    cursor.execute('SELECT * FROM monsters WHERE name = ?', (monster_name,))
-    return cursor.fetchone()
 
 
 
