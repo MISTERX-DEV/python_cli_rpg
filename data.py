@@ -16,6 +16,17 @@ def init_db():
         required_dexterity INTEGER
     )
     ''')
+
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS monsters (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        description TEXT,
+        attack_power INTEGER,
+        accuracy INTEGER,
+        xp INTEGER
+    )
+    ''')
     conn.commit()
     #conn.close()
     return cursor
@@ -54,7 +65,7 @@ def get_monster_by_name(monster_name):
 
 
 
-# НЕ ТРОГАТЬ!
+# НЕ
 '''with(
     open('Data/message/Inscriptions.txt', 'r', encoding='utf-8') as inscription_file,
     open('Data/message/Trader.txt', 'r', encoding='utf-8') as trader_file,
