@@ -16,7 +16,6 @@ def init_db():
         required_dexterity INTEGER
     )
     ''')
-
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS monsters (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -61,11 +60,18 @@ def get_monster_by_name(monster_name):
 
 
 
+def load_player(file):
+    with open(file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    return data
+
+def create_player(file, data):
+    with open(file, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4)
 
 
 
-
-# НЕ
+# НЕ ТРОГАТЬ!!
 '''with(
     open('Data/message/Inscriptions.txt', 'r', encoding='utf-8') as inscription_file,
     open('Data/message/Trader.txt', 'r', encoding='utf-8') as trader_file,
