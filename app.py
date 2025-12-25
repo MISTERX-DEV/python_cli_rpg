@@ -41,4 +41,15 @@ def init_game():
         "accurancy": data.get_monster_by_id(1)[5],
         "xp": data.get_monster_by_id(1)[6]
     }
+    return [player, monster]
+
+player = init_game()[0]
+monster = init_game()[1]
+
+
+def view_monstro(monster):
     print(f''' [ {monster["name"]} ] \n [ HP:{monster["health"]} ] \n [ ATK:{monster["attack_power"]} ] \n [ ACR:{monster["accurancy"]} ]''')
+def view_player_characteristics(player):
+    print(f'''\nХарактеристики игрока: \nЗдоровье:{player["hp"]} \nшанс:{player["accurancy"]} \nСила:{player["power"]}''')
+view_monstro(monster)
+view_player_characteristics(player)
