@@ -1,7 +1,9 @@
 import data
 import random
+import os
 
 
+cls = lambda: os.system('clear')
 
 player_default = {
     "name":"Player",
@@ -64,6 +66,7 @@ def view_player_characteristics(player):
 
 
 while player["hp"] >= 0:
+    cls()
     view_monstro(monster)
     view_player_characteristics(player)
     action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
@@ -73,8 +76,7 @@ while player["hp"] >= 0:
         player["hp"] -= monster["attack_power"]
     else:
         print("Ты дурачок?")
-        #player["hp"] -= 1000
-    print(action)
+        player["hp"] -= 1000
 
 else:
     print("Вы отсосали, идите отсудя >:)")
