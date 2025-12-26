@@ -7,9 +7,17 @@ cls = lambda: os.system('clear')
 
 player_default = {
     "name":"Player",
+    "class":"none",
+    "steps":3,
     "hp":20,
     "power":5,
-    "accurancy":70
+    "accurancy":70,
+    "skill":1,
+    "xp":0,
+    "charactetistics":{
+        
+    },
+    "inventory":[]
     }
 
 
