@@ -1,6 +1,7 @@
 import data
 import random
 import os
+from log import *
 
 
 cls = lambda: os.system('clear')
@@ -80,11 +81,13 @@ while player["hp"] >= 0:
     action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
     if action == 1:
         monster["health"] -= player["power"]
+        log(f"Игрок атаковал монстра. {monster["health"], player["power"]}")
     elif action == 2:
         player["hp"] -= monster["attack_power"]
     else:
         print("Ты дурачок?")
         player["hp"] -= 1000
+        log_er("Игрок даун")
 
 else:
     print("Вы отсосали, идите отсудя >:)")
