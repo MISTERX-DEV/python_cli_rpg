@@ -23,7 +23,7 @@ player_default = {
         
     },
     "equipment":{
-        "weapon":"none",
+        "weapon":data.get_item_by_id(1),
         "armor":"none",
         "potions":"none"
     },
