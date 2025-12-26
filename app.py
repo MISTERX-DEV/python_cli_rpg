@@ -82,25 +82,22 @@ def view_player_characteristics(player):
 
 
 
+def fight():
+    while player["hp"] >= 0:
+        cls()
+        view_monstro(monster)
+        view_player_characteristics(player)
+        action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
+        if action == 1:
+            monster["health"] -= player["power"]
+        elif action == 2:
+            player["hp"] -= monster["attack_power"]
+        else:
+            print("Ты дурачок?")
+            player["hp"] -= 1000
 
-while player["hp"] >= 0:
-    cls()
-    view_monstro(monster)
-    view_player_characteristics(player)
-    action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
-    if action == 1:
-        monster["health"] -= player["power"]
-    elif action == 2:
-        player["hp"] -= monster["attack_power"]
     else:
-        print("Ты дурачок?")
-        player["hp"] -= 1000
-
-else:
-    print("Вы отсосали, идите отсудя >:)")
-
-
-
+        print("Вы отсосали, идите отсудя >:)")
 
 
 

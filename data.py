@@ -24,7 +24,8 @@ def init_db():
         health INTEGER,
         attack_power INTEGER,
         accuracy INTEGER,
-        xp INTEGER
+        xp INTEGER,
+        item_drop INTEGER
     )
     ''')
     conn.commit()
