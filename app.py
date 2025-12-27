@@ -78,30 +78,38 @@ def view_player_characteristics(player):
 
 
 
-
-
-
-
 def fight():
+    cls()
     while player["hp"] >= 0:
-        cls()
         view_monstro(monster)
         view_player_characteristics(player)
         action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
+        player_hit_chance = random.randint(1, 100)
+        monster_hit_chance = random.randint(1, 100)
+
         if action == 1:
-            monster["health"] -= player["power"]
+            if player_hit_chance <= player["accurancy"]:
+                monster["health"] -= player["power"]
+                cls()
+                print(f"Вы нанесли {player['power']} урона монстру!")
+            else:
+                print("Вы промахнулись!")
+
         elif action == 2:
-            player["hp"] -= monster["attack_power"]
+            if monster_hit_chance <= monster["accurancy"]:
+                player["hp"] -= monster["attack_power"]
+                cls()
+                print(f"Монстр нанес вам {monster['attack_power']} урона!")
+            else:
+                print("Монстр промахнулся!")
+
         else:
             print("Ты дурачок?")
             player["hp"] -= 1000
-
-    else:
-        print("Вы отсосали, идите отсудя >:)")
+    print("Вы отсосали, идите отсудя >:)")
 
 
-
-
+fight()
 
 
 
