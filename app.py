@@ -11,8 +11,6 @@ player_default = {
     "class":"none",
     "steps":3,
     "health":20,
-    "power":5,
-    "accurancy":70,
     "skill":1,
     "xp":0,
     "charactetistics":{
@@ -78,7 +76,7 @@ def view_player_characteristics(player):
 
 
 
-def fight2():
+def fight1():
     cls() # ------------------УБРАТЬ СКОРЕЕ ВСЕГО!!!----<----<---<--<--<-<-<-<-
     while player["health"] > 0:
         view_monstro(monster)
@@ -112,38 +110,21 @@ def fight2():
         print("Вы отсосали, идите отсудя >:)")
 
 
-def fight():
-    cls()
-    while player["health"] >= 0:
-        view_monstro(monster)
-        view_player_characteristics(player)
-        action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
-        player_hit_chance = random.randint(1, 100)
-        monster_hit_chance = random.randint(1, 100)
 
-        if action == 1:
-            if player_hit_chance <= player["accurancy"]:
-                monster["health"] -= player["power"]
-                cls()
-                print(f"Вы нанесли {player['power']} урона монстру!")
-            else:
-                print("Вы промахнулись!")
+def kill_monster():
+    player["xp"] += monster["xp"]
 
-        elif action == 2:
-            if monster_hit_chance <= monster["accurancy"]:
-                player["health"] -= monster["attack_power"]
-                cls()
-                print(f"Монстр нанес вам {monster['attack_power']} урона!")
-            else:
-                print("Монстр промахнулся!")
+def level_up():
+    pass
 
-        else:
-            print("Ты дурачок?")
-            player["health"] -= 1000
-    print("Вы отсосали, идите отсудя >:)")
+def boss():
+    pass
 
 
-fight2()
+
+
+
+fight()
 
 
 
