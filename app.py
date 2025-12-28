@@ -9,9 +9,9 @@ cls = lambda: os.system('clear')
 player_default = {
     "name":"Player",
     "class":"none",
-    "steps":3,
     "health":20,
-    "skill":1,
+    "steps":3,
+    "level":1,
     "xp":0,
     "charactetistics":{
         "health_c":20,
@@ -76,7 +76,7 @@ def view_player_characteristics(player):
 
 
 
-def fight1():
+def fight():
     cls() # ------------------УБРАТЬ СКОРЕЕ ВСЕГО!!!----<----<---<--<--<-<-<-<-
     while player["health"] > 0:
         view_monstro(monster)
@@ -115,7 +115,37 @@ def kill_monster():
     player["xp"] += monster["xp"]
 
 def level_up():
-    pass
+    view_player_characteristics(player)
+    level = 1
+    skill_point = 0
+    while True:
+        dev_act = int(input("[1] Выдать XP\n[2] Прокачка\nДействие: "))
+        if dev_act == 1:
+            num = int(input("XP: "))
+            player["xp"] += num
+        elif dev_act == 2 and skill_point != 0:
+            view_player_characteristics(player)
+            action = int(input("\nПрокачать\n[1] Здоровье\n[2] Стамина\n[3] Сила\n[4] Ловкость\nДействие: "))
+            if action == 1:
+                player["health_c"] += 1
+                skill_point -= 1
+            elif action == 2:
+                player["stamina_c"] += 1
+                skill_point -= 1
+            elif action == 3:
+                player["strength_c"] += 1
+                skill_point -= 1
+            elif action == 4:
+                player["dexterity_c"] += 1
+                skill_point -= 1
+        else:
+            print("Нету поинтов")
+        
+
+        if num >= 100:
+            num -= 100
+            level += 1
+            skill_point += 1
 
 def boss():
     pass
@@ -124,8 +154,10 @@ def boss():
 
 
 
-fight()
 
+# Вызов
+#fight()
+level_up()
 
 
 
