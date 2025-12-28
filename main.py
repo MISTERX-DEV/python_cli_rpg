@@ -2,6 +2,8 @@ import data
 import app
 import log
 
+player_name = "player_test"+".json"
+
 def main():
     data.init_db()
     app.init_game()

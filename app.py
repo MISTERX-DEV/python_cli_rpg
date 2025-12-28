@@ -1,3 +1,4 @@
+import main
 import data
 import random
 import os
@@ -9,8 +10,8 @@ cls = lambda: os.system('clear')
 player_default = {
     "name":"Player",
     "class":"none",
-    "health":20,
-    "steps":3,
+    "health":0,
+    "stamina":0,
     "level":1,
     "xp":0,
     "charactetistics":{
@@ -49,9 +50,11 @@ player_default = {
 '''
 
 def init_game():
-    #data.create_player("player_test.json", player_default)
-    player = data.load_player("player_test.json")
-    monster = {
+    #data.create_player(main.player_name, player_default)
+    updating_the_characteristics()
+
+player = data.load_player(main.player_name)
+monster = {
         "id": data.get_monster_by_id(1)[0],
         "name": data.get_monster_by_id(1)[1],
         "desc": data.get_monster_by_id(1)[2],
@@ -60,16 +63,12 @@ def init_game():
         "accurancy": data.get_monster_by_id(1)[5],
         "xp": data.get_monster_by_id(1)[6]
     }
-    return [player, monster]
-
-player = init_game()[0]
-monster = init_game()[1]
 
 
 def view_monstro(monster):
     print(f''' [ {monster["name"]} ] \n [ HP:{monster["health"]} ] \n [ ATK:{monster["attack_power"]} ] \n [ ACR:{monster["accurancy"]} ]''')
 def view_player_characteristics(player):
-    print(f'\nХарактеристики игрока: \nЗдоровье: [ {player["health"]} ] \nВыносливость: [ {player["steps"]} ] \nОружие: {player["equipment"]["weapon"][1]} | ATK: {player["equipment"]["weapon"][3]} | ACR: {player["equipment"]["weapon"][4]}')
+    print(f'\nХарактеристики игрока: \nЗдоровье: [ {player["health"]} ] \nВыносливость: [ {player["stamina"]} ] \nОружие: {player["equipment"]["weapon"][1]} | ATK: {player["equipment"]["weapon"][3]} | ACR: {player["equipment"]["weapon"][4]}')
 
 
 
@@ -115,37 +114,12 @@ def kill_monster():
     player["xp"] += monster["xp"]
 
 def level_up():
-    view_player_characteristics(player)
-    level = 1
-    skill_point = 0
-    while True:
-        dev_act = int(input("[1] Выдать XP\n[2] Прокачка\nДействие: "))
-        if dev_act == 1:
-            num = int(input("XP: "))
-            player["xp"] += num
-        elif dev_act == 2 and skill_point != 0:
-            view_player_characteristics(player)
-            action = int(input("\nПрокачать\n[1] Здоровье\n[2] Стамина\n[3] Сила\n[4] Ловкость\nДействие: "))
-            if action == 1:
-                player["health_c"] += 1
-                skill_point -= 1
-            elif action == 2:
-                player["stamina_c"] += 1
-                skill_point -= 1
-            elif action == 3:
-                player["strength_c"] += 1
-                skill_point -= 1
-            elif action == 4:
-                player["dexterity_c"] += 1
-                skill_point -= 1
-        else:
-            print("Нету поинтов")
-        
+    pass
 
-        if num >= 100:
-            num -= 100
-            level += 1
-            skill_point += 1
+def updating_the_characteristics():
+    player["health"] = player["charactetistics"]["health_c"]
+    player["stamina"] = player["charactetistics"]["stamina_c"]
+    data.create_player(main.player_name, player)
 
 def boss():
     pass
@@ -157,7 +131,7 @@ def boss():
 
 # Вызов
 #fight()
-level_up()
+#level_up()
 
 
 
