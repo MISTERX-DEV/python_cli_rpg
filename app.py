@@ -112,8 +112,7 @@ def fight():
 def kill_monster():
     player["xp"] += monster["xp"]
 
-def level_up():
-
+def level_up(player):
     while True:
         action = int(input("\n[1] Повысить xp\n[2] Повысить уровень\n------> "))
         if action == 1:
@@ -129,7 +128,7 @@ def level_up():
                 print("Поздравляем! Вы повысили уровень!")
                 updating_the_characteristics()
                 view_player_characteristics(player)
-                break
+                
 
 def updating_the_characteristics():
     player["health"] = player["characteristics"]["health_c"]
@@ -146,7 +145,7 @@ def boss():
 
 # Вызов
 #fight()
-level_up()
+level_up(player)
 
 
 

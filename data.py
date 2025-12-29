@@ -30,8 +30,8 @@ def init_db():
     ''')
     conn.commit()
     #conn.close()
-    return cursor
-cursor = init_db()
+    return conn, cursor
+conn, cursor = init_db()
 
 # Предметы
 def get_all_items():
