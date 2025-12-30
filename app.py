@@ -53,14 +53,15 @@ def init_game():
     updating_the_characteristics()
 
 player = data.load_player(main.player_name)
+monster_data = data.get_monster_by_id(1)
 monster = {
-        "id": data.get_monster_by_id(1)[0],
-        "name": data.get_monster_by_id(1)[1],
-        "desc": data.get_monster_by_id(1)[2],
-        "health": data.get_monster_by_id(1)[3],
-        "attack_power": data.get_monster_by_id(1)[4],
-        "accuracy": data.get_monster_by_id(1)[5],
-        "xp": data.get_monster_by_id(1)[6]
+        "id": monster_data[0],
+        "name": monster_data[1],
+        "desc": monster_data[2],
+        "health": monster_data[3],
+        "attack_power": monster_data[4],
+        "accuracy": monster_data[5],
+        "xp": monster_data[6]
     }
 
 
@@ -113,6 +114,7 @@ def kill_monster():
     player["xp"] += monster["xp"]
 
 def level_up(player):
+
     while True:
         action = int(input("\n[1] Повысить xp\n[2] Повысить уровень\n------> "))
         if action == 1:
@@ -133,7 +135,7 @@ def level_up(player):
 def updating_the_characteristics():
     player["health"] = player["characteristics"]["health_c"]
     player["stamina"] = player["characteristics"]["stamina_c"]
-    data.create_player(main.player_name, player)
+    data.save_player(main.player_name, player)
 
 def boss():
     pass

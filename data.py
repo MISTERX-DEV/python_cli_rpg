@@ -29,7 +29,6 @@ def init_db():
     )
     ''')
     conn.commit()
-    #conn.close()
     return conn, cursor
 conn, cursor = init_db()
 
@@ -67,7 +66,7 @@ def load_player(file:str):
         data = json.load(f)
     return data
 
-def create_player(file:str, data:dict):
+def save_player(file:str, data:dict):
     with open(file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
