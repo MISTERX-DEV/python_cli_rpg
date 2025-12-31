@@ -1,4 +1,5 @@
 import main
+import menu
 import data
 import random
 import os
@@ -65,21 +66,14 @@ monster = {
     }
 
 
-def view_monstro(monster):
-    print(f''' [ {monster["name"]} ] \n [ HP:{monster["health"]} ] \n [ ATK:{monster["attack_power"]} ] \n [ ACR:{monster["accuracy"]} ]''')
-def view_player_characteristics(player):
-    print(f'\nХарактеристики игрока: \nЗдоровье: [ {player["health"]} ] \nВыносливость: [ {player["stamina"]} ] \nОружие: {player["equipment"]["weapon"][1]} | ATK: {player["equipment"]["weapon"][3]} | ACR: {player["equipment"]["weapon"][4]}')
-
-
-
 
 
 
 def fight():
     cls() # ------------------УБРАТЬ СКОРЕЕ ВСЕГО!!!----<----<---<--<--<-<-<-<-
     while player["health"] > 0:
-        view_monstro(monster)
-        view_player_characteristics(player)
+        menu.show_monster(monster)
+        menu.show_player_characteristics(player)
         action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
         player_hit_chance = random.randint(1, 100)
         monster_hit_chance = random.randint(1, 100)
@@ -147,7 +141,7 @@ def boss():
 
 # Вызов
 #fight()
-level_up(player)
+#level_up(player)
 
 
 
