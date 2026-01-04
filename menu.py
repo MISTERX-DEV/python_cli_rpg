@@ -1,3 +1,5 @@
+import app
+
 def show_monster(monster):
     print(f''' [ {monster["name"]} ] \n [ HP:{monster["health"]} ] \n [ ATK:{monster["attack_power"]} ] \n [ ACR:{monster["accuracy"]} ]''')
 
@@ -21,8 +23,8 @@ def show_fight_menu():
         "1": "Вы выбрали атаку!",
         "2": "Вы защищаетесь!",
         "3": "Вы используете предмет!",
-        "4": "Вы сбегаете!",
-        "5": "Показ характеристик...",
+        "4": show_main_menu,
+        "5": app.sex,
         "0": "Выход из боя..."
     }
     
@@ -36,21 +38,21 @@ def show_fight_menu():
 
 
 
-def handle_actions(choice, actions_menu):
+def handle_actions(actions_menu, choice):
     for i in actions_menu:
         if str(choice) == i:
             if callable(actions_menu[i]):
                 actions_menu[i]()
             else:
                 print(actions_menu[i])
+                break
         
-choice = 1
 
 
-def main(current_menu):
+
+
+
+def main(current_menu, choice):
     while True:
-        handle_actions(choice, current_menu)
+        handle_actions(current_menu, choice)
         input("Нажмите Enter чтобы продолжить...")
-
-if __name__ == "__main__":
-    main(show_main_menu())

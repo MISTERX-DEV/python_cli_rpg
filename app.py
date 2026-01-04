@@ -51,7 +51,8 @@ player_default = {
 
 def init_game():
     #data.create_player(main.player_name, player_default)
-    updating_the_characteristics()
+    #updating_the_characteristics()
+    pass
 
 player = data.load_player(main.player_name)
 monster_data = data.get_monster_by_id(1)
@@ -67,7 +68,8 @@ monster = {
 
 
 
-
+def sex():
+    print("Вы выбрали атаку! SEX")
 
 def fight():
     cls() # ------------------УБРАТЬ СКОРЕЕ ВСЕГО!!!----<----<---<--<--<-<-<-<-
