@@ -123,7 +123,7 @@ def level_up(player):
                 player["characteristics"]["dexterity_c"] += 1
                 print("Поздравляем! Вы повысили уровень!")
                 updating_the_characteristics()
-                view_player_characteristics(player)
+                menu.show_player_characteristics(player)
                 
 
 def updating_the_characteristics():
