@@ -9,7 +9,7 @@ def main():
     try:
         data.init_db()
         app.init_game()
-        menu.main(menu.show_fight_menu(), 5)
+        menu.main(menu.show_fight_menu(), input("Choose an action: "))
     finally:
         data.conn.close()
 if __name__ == "__main__":

@@ -39,20 +39,24 @@ def show_fight_menu():
 
 
 def handle_actions(actions_menu, choice):
-    for i in actions_menu:
-        if str(choice) == i:
-            if callable(actions_menu[i]):
-                actions_menu[i]()
-            else:
-                print(actions_menu[i])
+    for actions in actions_menu:
+        if choice in actions:
+            if callable(actions_menu[actions]):
+                actions_menu[actions]()
                 break
-        
+            else:
+                print(actions_menu[actions])
+                break
+            return choice != "0"
+    else:
+        print("Invalid choice. Try again.")
+        return True
 
 
 
 
 
 def main(current_menu, choice):
-    while True:
-        handle_actions(current_menu, choice)
-        input("Нажмите Enter чтобы продолжить...")
+    running = True
+    while running:
+        running = handle_actions(current_menu, choice)
