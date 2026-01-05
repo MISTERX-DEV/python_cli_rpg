@@ -51,8 +51,7 @@ player_default = {
 
 def init_game():
     #data.create_player(main.player_name, player_default)
-    #updating_the_characteristics()
-    pass
+    updating_the_characteristics()
 
 player = data.load_player(main.player_name)
 monster_data = data.get_monster_by_id(1)
