@@ -51,7 +51,7 @@ player_default = {
 
 def init_game():
     #data.create_player(main.player_name, player_default)
-    updating_the_characteristics()
+    update_player_characteristics()
 
 player = data.load_player(main.player_name)
 monster_data = data.get_monster_by_id(1)
@@ -67,15 +67,12 @@ monster = {
 
 
 
-def sex():
-    print("Вы выбрали атаку! SEX")
-
 def fight():
     cls() # ------------------УБРАТЬ СКОРЕЕ ВСЕГО!!!----<----<---<--<--<-<-<-<-
     while player["health"] > 0:
         menu.show_monster(monster)
         menu.show_player_characteristics(player)
-        action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n------> "))
+        action = int(input("\nВыберите ваши действия:\n[1] Атака\n[2] Попущен\n[3] Выход\n------> "))
         player_hit_chance = random.randint(1, 100)
         monster_hit_chance = random.randint(1, 100)
 
@@ -96,6 +93,8 @@ def fight():
             else:
                 cls()
                 print("Монстр промахнулся!")
+        elif action == 3:
+            break
         else:
             cls()
             print("Ты дурачок?")
@@ -123,11 +122,11 @@ def level_up(player):
                 player["characteristics"]["strength_c"] += 1
                 player["characteristics"]["dexterity_c"] += 1
                 print("Поздравляем! Вы повысили уровень!")
-                updating_the_characteristics()
+                update_player_characteristics()
                 menu.show_player_characteristics(player)
                 
 
-def updating_the_characteristics():
+def update_player_characteristics():
     player["health"] = player["characteristics"]["health_c"]
     player["stamina"] = player["characteristics"]["stamina_c"]
     data.save_player(main.player_name, player)

@@ -25,6 +25,24 @@ def show_main_menu():
     
     return actions
 
+def debug_menu():
+    print('\n=== Debug Menu ===')
+    print('[1] Показать характеристики игрока')
+    print('[2] Показать текущее оружие игрока')
+    print('[3] Обновить характеристики игрока')
+    print('[4] Показать монстра')
+    print('[5] Начать бой с монстром')
+    print('[0] Выйти из Debug Menu')
+
+    actions = {
+        "1": lambda: show_player_characteristics(app.player),
+        "2": lambda: print(f'Оружие игрока: {app.player["equipment"]["weapon"][1]} | ATK: {app.player["equipment"]["weapon"][3]} | ACR: {app.player["equipment"]["weapon"][4]}'),
+        "3": lambda: app.update_player_characteristics(),
+        "4": lambda: show_monster(app.monster),
+        "5": lambda: app.fight()
+    }
+    return actions
+
 
 
 
