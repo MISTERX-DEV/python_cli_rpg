@@ -32,7 +32,6 @@ def debug_menu():
     print('[3] Обновить характеристики игрока')
     print('[4] Показать монстра')
     print('[5] Начать бой с монстром')
-    print('[0] Выйти из Debug Menu')
 
     actions = {
         "1": lambda: show_player_characteristics(app.player),

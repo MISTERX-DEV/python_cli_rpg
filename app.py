@@ -50,7 +50,6 @@ player_default = {
 '''
 
 def init_game():
-    #data.create_player(main.player_name, player_default)
     update_player_characteristics()
 
 player = data.load_player(main.player_name)
